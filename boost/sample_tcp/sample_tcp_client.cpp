@@ -61,7 +61,7 @@ public:
     boost::asio::streambuf receive_buffer_;
 };
 
-int main(int argc, char* argv[])
+int main()
 {
     boost::asio::io_service io_service;
     client c(io_service);
