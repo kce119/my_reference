@@ -26,18 +26,17 @@ public:
     }
 
     void handle_req_list_num(ns::abstract_type const& s_sp) {
-    //session search
-    for(auto itr = sp_set_.begin(); itr != sp_set_.end(); ++itr) {
-        if (itr->get_address() == s_sp.get_address()) { // itr->get() = &*(*itr)
-            itr->send_list_num(sp_set_.size());
-            return;
+        //session search
+        for(auto itr = sp_set_.begin(); itr != sp_set_.end(); ++itr) {
+            if (itr->get_address() == s_sp.get_address()) { // itr->get() = &*(*itr)
+                itr->send_list_num(sp_set_.size());
+                return;
+            }
         }
+        std::cout << "[ERROR] not exsit session." << std::endl;
     }
-    std::cout << "[ERROR] not exsit session." << std::endl;
-}
 
 private:
-    //std::vector<ns::abstract_type> sp_v_;
     std::set<ns::abstract_type> sp_set_;
 };
 

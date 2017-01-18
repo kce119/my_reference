@@ -2,7 +2,6 @@
 #include <iostream>
 #include <boost/asio.hpp>
 
-//#include "type_erasure.hpp"
 #include "core.hpp"
 #include "session.hpp"
 #include "session_impl.hpp"
