@@ -53,10 +53,6 @@ public:
     void handle_read(const boost::system::error_code& error,
                      std::size_t bytes_transferred);
 
-    session& operator=(session const&) {
-        return *this;
-    }
-
 private:
     core& core_;
     tcp::socket socket_;

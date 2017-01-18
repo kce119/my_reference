@@ -21,6 +21,14 @@ public:
         ownership_ = p;
         return *this;
     }
+
+    template <class U>
+    shared_any& operator<(std::shared_ptr<U> p) {
+        base_type temp(*p);
+        ownership_ = p;
+        return *this;
+    }
+
     void const* get_address() const {
         return ownership_.get();
     }
@@ -44,10 +52,18 @@ namespace ns { // なんらかのnamespaceは必須 *1
 using abstract_type = shared_any<
     mpl::vector<
         destructible<>, // 破棄可能(最小限の制約)
-        assignable<>,
         has_send_list_num<void(std::size_t)>
     >
 >;
+
+inline bool operator<(abstract_type const& lhs, abstract_type const& rhs) {
+    return lhs.get_address() < rhs.get_address();
+}
+
+inline bool operator==(abstract_type const& lhs, abstract_type const& rhs) {
+    return lhs.get_address() == rhs.get_address();
+}
+
 }
 
 #endif //INCLUDE_GUARD_TYPE_ERASURE
